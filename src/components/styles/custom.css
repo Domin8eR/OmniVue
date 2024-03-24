@@ -1,0 +1,96 @@
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar- {
+  width: 10px;
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: darkgrey;
+}
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+  .prt {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    display: "inline-block";
+    width: 100%;
+  }
+  .emr {
+    width: 50%;
+  }
+  .sts {
+    width: 100%;
+  }
+  .typ {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    display: "inline-block";
+    width: 100%;
+  }
+  .nCanvas {
+    float: right;
+  }
+}
+
+/*for desktop*/
+@media screen and (min-width: 780px) {
+  .prt {
+    float: right;
+    display: "inline-block";
+  }
+  .typ {
+    float: right;
+    display: "inline-block";
+  }
+  .filterCss{
+    margin: 9px;
+    width: 350;
+    height: 2px;
+  }
+} 
+
+/* For Tablets */
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  .prt {
+    float: right;
+    display: "inline-block";
+  }
+  .typ {
+    float: right;
+    display: "inline-block";
+  }
+  .filterCss{
+    margin: 10px;
+    width: 350
+  }
+  .searchbar{
+    float:right;
+    margin-top:8px;
+    width:250px;
+    outline: none;;
+    font-size: 16px;
+    -webkit-transition: width 0.1s ease-in-out;
+    transition: width 0.1s ease-in-out;
+  }
+}
+@media screen and (min-width: 350px) and (max-width: 520px) {
+  .searchbar{
+    width:200px;
+    float:right;    
+  }
+}
+@media screen and (min-width: 540px) and (max-width: 780px) {
+  .searchbar{
+    width:150px;
+    float:right;
+    
+  }
+}

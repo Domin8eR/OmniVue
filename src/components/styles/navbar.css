@@ -1,0 +1,17 @@
+.formControl{
+ 
+    margin-top: 85px;
+  }
+  .navigation{
+      overflow: hidden;
+    
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 9;
+    margin-bottom: 0px;
+  }
+  .logout:hover{
+    transform: scale(1.13);
+    transition-duration: 0.5s;
+}

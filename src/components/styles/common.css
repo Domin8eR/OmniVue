@@ -1,0 +1,33 @@
+
+.drawer{
+    position:fixed;
+    top: 0;
+    left:0;
+    bottom:0;
+    display:flex;
+    flex-direction:column;
+    width:220px;
+    height:100%;
+    color:#ffffff;
+    background-color:#032540; 
+}
+.main-nav:hover{
+    background-color:tomato;
+}
+.logoDiv{
+    background-color: rgb(19, 52, 158);
+    transform:translateY(-12%);
+    height:64px;
+}
+.logoDiv img{
+    margin-left: -15px;
+}
+.logoText{
+    top:0;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    font-size: 26px;
+    color:#032540;
+    text-transform: uppercase;
+}
