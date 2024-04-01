@@ -14,14 +14,17 @@ import Toolbar from "@mui/material/Toolbar";
 import { auth } from '../firebase.config.js';
 import { useNavigate } from 'react-router-dom';
 
-const Admin = () => {
-  const ref = collection(firestore, "board");
+const Project = () => {
+  const ref = collection(firestore, "Project");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    tenantid:"",
-    projectid:"",
-    projectname:"",
+    prjID:"",
+    prjName:"",
+    prjOwnerName:"",
+    prjDes:"",
+    prjDate:"",
+    prjPrivate:"",
   });
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const navigate = useNavigate();
@@ -44,11 +47,11 @@ const Admin = () => {
 
     try {
       await addDoc(ref, formValues);
-            console.log("Document successfully written!");
-            setOpenSnackbar(true);
-            setTimeout(() => {
-                navigate("/boards");
-            }, 3000);
+      console.log("Document successfully written!");
+      setOpenSnackbar(true);
+      setTimeout(() => {
+        navigate("/boards");
+      }, 3000);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -60,8 +63,8 @@ const Admin = () => {
   };
 
   const isFormValid = () => {
-    const { tenantid, projectid, projectname } = formValues;
-    return tenantid.trim() !== "" && projectid.trim() !== "" && projectname.trim() !== "";
+    const { prjID, prjName, prjOwnerName, prjDes, prjDate, prjPrivate } = formValues;
+    return prjID.trim() !== "" && prjName.trim() !== "" && prjOwnerName.trim() !== "" && prjDes.trim() !== "" && prjDate.trim() !== "" && prjPrivate.trim() !== "";
   };
 
   const handleSnackbarClose = () => {
@@ -80,21 +83,9 @@ const Admin = () => {
       </AppBar>
       <Container maxWidth="sm" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div className="appointment" style={{ marginTop: "140px" }}>
-          <h2 style={{ margin: "20px" }}>Edit Board Form</h2>
+          <h2 style={{ margin: "20px" }}>Add Project</h2>
           <form onSubmit={addPost}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Tenant Identification"
-                  variant="outlined"
-                  type="string"
-                  placeholder="Please enter tenant ID"
-                  name="tenantid"
-                  value={formValues.tenantid}
-                  onChange={handleInputChange}
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
@@ -102,8 +93,8 @@ const Admin = () => {
                   variant="outlined"
                   type="string"
                   placeholder="Please enter project ID"
-                  name="projectid"
-                  value={formValues.projectid}
+                  name="prjID"
+                  value={formValues.prjID}
                   onChange={handleInputChange}
                 />
               </Grid>
@@ -114,8 +105,55 @@ const Admin = () => {
                   variant="outlined"
                   type="string"
                   placeholder="Please enter project name"
-                  name="projectname"
-                  value={formValues.projectname}
+                  name="prjName"
+                  value={formValues.prjName}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Project Owner Name"
+                  variant="outlined"
+                  type="string"
+                  placeholder="Please enter project owner name"
+                  name="prjOwnerName"
+                  value={formValues.prjOwnerName}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Project Description"
+                  variant="outlined"
+                  type="string"
+                  placeholder="Please enter project description"
+                  name="prjDes"
+                  value={formValues.prjDes}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Project Date"
+                  variant="outlined"
+                  type="date"
+                  name="prjDate"
+                  value={formValues.prjDate}
+                  onChange={handleInputChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Is Project Private?"
+                  variant="outlined"
+                  type="string"
+                  placeholder="Please enter 'Y' for Yes and 'N' for No"
+                  name="prjPrivate"
+                  value={formValues.prjPrivate}
                   onChange={handleInputChange}
                 />
               </Grid>
@@ -144,4 +182,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Project;

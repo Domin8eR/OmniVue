@@ -150,7 +150,7 @@ const Header = (props) => {
                   </ListItem>
                 </Link> */}
                 
-                <Link exact to="/board" className={classes.link}>
+                <Link exact to="/boards" className={classes.link}>
                   <ListItem  className={classes.select}>
                     <Tooltip title="Board" TransitionComponent={Zoom} placement="right" >
                       <ListItemIcon className={classes.icon}>

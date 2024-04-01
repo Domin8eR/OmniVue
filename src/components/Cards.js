@@ -14,14 +14,15 @@ import Toolbar from "@mui/material/Toolbar";
 import { auth } from '../firebase.config.js';
 import { useNavigate } from 'react-router-dom';
 
-const Admin = () => {
-  const ref = collection(firestore, "board");
+const Cards = () => {
+  const ref = collection(firestore, "BoardCardMaster");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    tenantid:"",
-    projectid:"",
-    projectname:"",
+    cardId: "",
+    cardProjectId: "",
+    cardProjectOwner: "",
+    cardProgressStatus: "todo" // Default to todo
   });
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const navigate = useNavigate();
@@ -44,11 +45,11 @@ const Admin = () => {
 
     try {
       await addDoc(ref, formValues);
-            console.log("Document successfully written!");
-            setOpenSnackbar(true);
-            setTimeout(() => {
-                navigate("/boards");
-            }, 3000);
+      console.log("Document successfully written!");
+      setOpenSnackbar(true);
+      setTimeout(() => {
+        navigate("/boards");
+      }, 3000);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -60,8 +61,8 @@ const Admin = () => {
   };
 
   const isFormValid = () => {
-    const { tenantid, projectid, projectname } = formValues;
-    return tenantid.trim() !== "" && projectid.trim() !== "" && projectname.trim() !== "";
+    const { cardId, cardProjectId, cardProjectOwner } = formValues;
+    return cardId.trim() !== "" && cardProjectId.trim() !== "" && cardProjectOwner.trim() !== "";
   };
 
   const handleSnackbarClose = () => {
@@ -80,42 +81,42 @@ const Admin = () => {
       </AppBar>
       <Container maxWidth="sm" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <div className="appointment" style={{ marginTop: "140px" }}>
-          <h2 style={{ margin: "20px" }}>Edit Board Form</h2>
+          <h2 style={{ margin: "20px" }}>Add Card</h2>
           <form onSubmit={addPost}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Tenant Identification"
+                  label="Card ID"
                   variant="outlined"
                   type="string"
-                  placeholder="Please enter tenant ID"
-                  name="tenantid"
-                  value={formValues.tenantid}
+                  placeholder="Please enter card ID"
+                  name="cardId"
+                  value={formValues.cardId}
                   onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Project Identification"
+                  label="Project ID"
                   variant="outlined"
                   type="string"
                   placeholder="Please enter project ID"
-                  name="projectid"
-                  value={formValues.projectid}
+                  name="cardProjectId"
+                  value={formValues.cardProjectId}
                   onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Project Name"
+                  label="Project Owner"
                   variant="outlined"
                   type="string"
-                  placeholder="Please enter project name"
-                  name="projectname"
-                  value={formValues.projectname}
+                  placeholder="Please enter project owner"
+                  name="cardProjectOwner"
+                  value={formValues.cardProjectOwner}
                   onChange={handleInputChange}
                 />
               </Grid>
@@ -138,10 +139,10 @@ const Admin = () => {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleSnackbarClose}
-        message={"board details added Successfully"}
+        message={"Card details added Successfully"}
       />
     </>
   );
 };
 
-export default Admin;
+export default Cards;
